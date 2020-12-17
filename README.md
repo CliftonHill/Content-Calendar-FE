@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+**Modified by Clifton Hill** to remove extraneous detail and provide a simpler and streamlined development environment to reuse. (Inspired by App Brewery course with Angela Yu.)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
