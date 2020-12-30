@@ -15,7 +15,7 @@ function App() {
     <div>
     <Router>
       <Switch>
-        <Route exact path="/" component={ SplashPage }/>
+        <Route exact path="/" component={ SplashPage }/> // once authorization is stored in header, then redirect to /home
         {isLoggedIn && <Route exact path="/home" component={ HomePage }/>}
         {isLoggedIn && <Route exact path="/user" component={ UserPage }/>}
         // may need some 404 catch page for someone that is not logged in trying to access a page. As well as redirect to go to home page if logged in and user goes to root
