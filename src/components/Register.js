@@ -5,6 +5,7 @@ export default function Register() {
 const [ displayName, setDisplayName ] = useState("");
 const [ email, setEmail ] = useState("");
 const [ password, setPassword ] = useState("");
+const [errorMsg, setErrorMsg] = useState("");
 
 function handleChange (e) {
   if (e.target.name === "displayName") {
@@ -21,11 +22,20 @@ function handleSubmit (e) {
   e.preventDefault();
 
   axios.post("api/user/register", { displayName, email, password })
-    .then((result) => console.log(result));
+    .then((res) => {
+      console.log(res)
+      // if (!res.data.error) {
+      //   console.log(res);
+      // } else {
+      //   setErrorMsg(res.data.error);
+      //   console.log(res.data.error);
+      // }
+    });
 }
 
   return (
     <form onSubmit={ handleSubmit }>
+      { errorMsg && <div className="errorMsg">Error: { errorMsg }</div> }
       <label>Name: <input type="text" name="displayName" value={ displayName } onChange={ handleChange } placeholder="Your Name" required /></label><br />
       <label>Email: <input type="email" name="email" value={ email } onChange={ handleChange } placeholder="you@email.com" required/></label><br />
       <label>Password: <input type="password" name="password" value={ password } onChange={ handleChange } placeholder="********" required/></label>
