@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router";
 import axios from "axios";
 
 // need to set up axios to send form data as state
@@ -16,14 +17,17 @@ export default function Login() {
     }
   }
 
-  function handleSubmit (e) {
+  async function handleSubmit (e) {
     e.preventDefault();
 
-    axios.post("/api/user/login", { email, password})
+    await axios.post("/api/user/login", { email, password})
       .then((res) => {
         if (!res.data.error) {
         console.log(res);
         localStorage.setItem("authorization", "Bearer: " + res.data); // *** doesn't work
+        return <Redirect to="/home" />;
+        // const auth = localStorage.getItem("authorization");
+        // axios.get("/api/user", { headers: {"authorization": auth } }); // not redirecting. Why? Maybe because of route
        } else {
           throw { error: res.data.error }
         }

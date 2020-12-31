@@ -8,6 +8,8 @@ import SplashPage from "./pages/Splash";
 import UserPage from "./pages/User";
 
 function App() {
+  // get header, then try route,
+
   const [isLoggedIn, setLoggedIn] = useState(false); //logging in happens globablly, so I may need Redux? or just pass it through
 // if user is logged in and goes to main page, then redirect to API/user/login. Need logic built in
 
@@ -16,8 +18,8 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={ SplashPage }/> // once authorization is stored in header, then redirect to /home
-        {isLoggedIn && <Route exact path="/home" component={ HomePage }/>}
-        {isLoggedIn && <Route exact path="/user" component={ UserPage }/>}
+        <Route exact path="/home" component={ HomePage }/>
+        <Route exact path="/user" component={ UserPage }/>
         // may need some 404 catch page for someone that is not logged in trying to access a page. As well as redirect to go to home page if logged in and user goes to root
       </Switch>
     </Router>
