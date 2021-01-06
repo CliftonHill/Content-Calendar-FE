@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
 
-// need to set up axios to send form data as state
-
-export default function Login() {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -16,21 +15,24 @@ export default function Login() {
     }
   }
 
-  function handleSubmit (e) {
-    e.preventDefault();
+  const history = useHistory();
 
-    axios.post("/api/user/login", { email, password})
-      .then((res) => {
+  async function handleSubmit (e) {
+    e.preventDefault();
+    try {
+      const res = await axios.post("/api/user/login", { email, password});
+      console.log(res);
         if (!res.data.error) {
-        console.log(res);
-        localStorage.setItem("authorization", "Bearer: " + res.data); // *** doesn't work
-       } else {
-          throw { error: res.data.error }
-        }
-    }).catch(e => {
-        setErrorMsg(e.error);
-        console.log(e);
-    });
+
+        localStorage.setItem("authorization", "Bearer: " + res.data); // works, but Cesar said new code doesn't need, so this can be removed (1/6/21)
+        history.push("/home");
+      } else {
+        console.log("1st", res.data.error)
+      }
+  } catch (error) {
+    console.log("catch", error);
+  }
+
   }
 
   return (

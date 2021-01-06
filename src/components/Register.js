@@ -30,6 +30,10 @@ function handleSubmit (e) {
       //   setErrorMsg(res.data.error);
       //   console.log(res.data.error);
       // }
+    })
+    .catch(e => {
+      setErrorMsg(JSON.parse(e[0].msg));
+      console.log(e)
     });
 }
 
