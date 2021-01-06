@@ -3,11 +3,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import axios from "axios";
 
-export default async function UserView() {
-  // location of user Home where calendar is displayed, should log in directly to this page when going to root location if user token is still active.
-    // I think Home and Splash would both be routed to within the App, once I understand React Router
-
-  await axios.get("/api/user") 
+export default async function User() {
+  const token = localStorage.getItem("authorization");
+  console.log(token);
+  await axios.get("/api/user", { headers: { authorization: token } } )
     .then(res => {
       console.log(res);
     })
