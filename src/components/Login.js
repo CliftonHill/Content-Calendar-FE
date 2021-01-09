@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function Login(props) {
@@ -15,19 +15,17 @@ export default function Login(props) {
     }
   }
 
-  const history = useHistory();
+  const browserHistory = useHistory();
 
   async function handleSubmit (e) {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/user/login", { email, password});
-      console.log(res);
+      const res = await axios.post("/api/user/login/", { email, password});
         if (!res.data.error) {
-
-        localStorage.setItem("authorization", "Bearer: " + res.data); // works, but Cesar said new code doesn't need, so this can be removed (1/6/21)
-        history.push("/home");
+        console.log(res.data);
+        browserHistory.push("/home");
       } else {
-        console.log("1st", res.data.error)
+        setErrorMsg(res.data.error);
       }
   } catch (error) {
     console.log("catch", error);
