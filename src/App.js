@@ -4,18 +4,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // Pages
 import HomePage from "./pages/Home"; // home page is main functional page with calendar
-import SplashPage from "./pages/Splash";
+import SplashPage from "./pages/Splash"; // has log in and register as well
 import UserPage from "./pages/User";
 import ErrorPage from "./pages/Error";
-
-//global state?
-import Login from "./components/Login"
 
 function App(props) {
   // get header, then try route,
 
-  const [isLoggedIn, setLoggedIn] = useState(false); //logging in happens globablly, so I may need Redux? or just pass it through
-// if user is logged in and goes to main page, then redirect to API/user/login. Need logic built in
+// checking for log in happens by cookie on BE, but need to check for something from the BE to be able to serve certain pages or not?
 
 
   return (

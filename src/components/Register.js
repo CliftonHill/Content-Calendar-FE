@@ -22,6 +22,7 @@ function handleSubmit (e) {
   e.preventDefault();
 
   axios.post("api/user/register", { displayName, email, password })
+
     .then((res) => {
       console.log(res)
       // if (!res.data.error) {
