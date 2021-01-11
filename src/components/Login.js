@@ -20,7 +20,7 @@ export default function Login(props) {
   async function handleSubmit (e) {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/user/login/", { email, password});
+      const res = await axios.post("/api/user/login/", { email, password } );
         if (!res.data.error) {
         console.log(res.data);
         browserHistory.push("/home");
